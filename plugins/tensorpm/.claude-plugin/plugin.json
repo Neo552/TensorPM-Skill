@@ -1,0 +1,15 @@
+{
+  "name": "tensorpm-agentic-pm",
+  "description": "Agentic project management powered by TensorPM. Manage projects, action items, and workspaces through MCP tools and A2A protocol.",
+  "version": "0.8.1-beta.6",
+  "author": {
+    "name": "TensorPM",
+    "url": "https://tensorpm.com"
+  },
+  "homepage": "https://tensorpm.com/skill",
+  "repository": "https://github.com/Neo552/TensorPM-Skill",
+  "compatibility": {
+    "minTensorPMVersion": "0.8.0",
+    "platforms": ["darwin", "win32", "linux"]
+  }
+}

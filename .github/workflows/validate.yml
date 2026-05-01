@@ -1,0 +1,50 @@
+name: Validate Marketplace
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate marketplace.json is valid JSON
+        run: jq empty .claude-plugin/marketplace.json
+
+      - name: Validate plugin.json files are valid JSON
+        run: |
+          set -e
+          find plugins -name 'plugin.json' -print -exec jq empty {} \;
+
+      - name: Check required marketplace fields
+        run: |
+          jq -e '.name and .plugins and (.plugins | length > 0)' \
+            .claude-plugin/marketplace.json
+
+      - name: Check required plugin fields
+        run: |
+          set -e
+          for f in $(find plugins -name 'plugin.json'); do
+            jq -e '.name and .version and .description' "$f" || (echo "Missing required field in $f"; exit 1)
+          done
+
+      - name: Check version sync (marketplace ↔ plugin)
+        run: |
+          set -e
+          mp_version=$(jq -r '.plugins[0].version' .claude-plugin/marketplace.json)
+          pl_version=$(jq -r '.version' plugins/tensorpm/.claude-plugin/plugin.json)
+          if [ "$mp_version" != "$pl_version" ]; then
+            echo "Version mismatch: marketplace=$mp_version, plugin=$pl_version"
+            exit 1
+          fi
+          echo "OK: both at $mp_version"
+
+      - name: Check SKILL.md frontmatter exists
+        run: |
+          set -e
+          for f in $(find plugins -name 'SKILL.md'); do
+            head -1 "$f" | grep -q '^---$' || (echo "$f missing frontmatter"; exit 1)
+          done
