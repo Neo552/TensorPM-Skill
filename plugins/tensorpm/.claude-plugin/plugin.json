@@ -1,6 +1,6 @@
 {
   "name": "tensorpm",
-  "description": "Agentic Project Memory and AI project management. Structured long-term memory for Claude Code, Codex, and any MCP/A2A agent — manage TensorPM projects, action items, and workspaces.",
+  "description": "Agentic Project Memory | AI Project Management Software. The dedicated project management subagent for Claude Code, Codex, OpenClaw and any MCP/A2A agent — manages shared project context (goals, action items, decisions, history) via MCP tools and the A2A protocol. Local-first, free.",
   "version": "0.8.1-beta.6",
   "author": {
     "name": "TensorPM Team",
@@ -10,6 +10,10 @@
   "repository": "https://github.com/Neo552/TensorPM-Skill",
   "compatibility": {
     "minTensorPMVersion": "0.8.0",
-    "platforms": ["darwin", "win32", "linux"]
+    "platforms": [
+      "darwin",
+      "win32",
+      "linux"
+    ]
   }
 }
