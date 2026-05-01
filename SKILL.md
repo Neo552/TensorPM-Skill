@@ -23,7 +23,7 @@ TensorPM itself is free. For AI capabilities outside MCP (A2A), use your own API
 
 ## Installation (Agent CLI)
 
-Use one of these agent-friendly CLI install methods:
+Preferred package-manager install:
 
 ```bash
 # macOS
@@ -35,15 +35,31 @@ brew install --cask neo552/tensorpm/tensorpm
 winget install --id Neo552.TensorPM --exact --accept-package-agreements --accept-source-agreements
 ```
 
+Direct-download fallback (works on every platform, no installer script required):
+
 ```bash
-# macOS / Linux fallback installer script
-curl -fsSL https://raw.githubusercontent.com/Neo552/TensorPM/main/scripts/install.sh | bash
+# macOS DMG
+curl -fL -o /tmp/TensorPM-macOS.dmg \
+  https://github.com/Neo552/TensorPM-Releases/releases/latest/download/TensorPM-macOS.dmg
+hdiutil attach /tmp/TensorPM-macOS.dmg -nobrowse -quiet
+cp -R "/Volumes/$(ls /Volumes | grep -i TensorPM)/TensorPM.app" /Applications/
+hdiutil detach "/Volumes/$(ls /Volumes | grep -i TensorPM)" -quiet
+```
+
+```bash
+# Linux AppImage
+curl -fL -o ~/TensorPM.AppImage \
+  https://github.com/Neo552/TensorPM-Releases/releases/latest/download/TensorPM-Linux.AppImage
+chmod +x ~/TensorPM.AppImage
 ```
 
 ```powershell
-# Windows fallback installer script
-irm https://raw.githubusercontent.com/Neo552/TensorPM/main/scripts/install.ps1 | iex
+# Windows installer
+Invoke-WebRequest -Uri https://github.com/Neo552/TensorPM-Releases/releases/latest/download/TensorPM-Setup.exe -OutFile $env:TEMP\TensorPM-Setup.exe
+Start-Process $env:TEMP\TensorPM-Setup.exe
 ```
+
+If the agent needs to verify or pin a version, list releases via `gh release list -R Neo552/TensorPM-Releases` (the GitHub `/releases/latest` endpoint excludes pre-releases, so prefer `gh release list` when only beta tags exist).
 
 ## Runtime Prerequisites
 
