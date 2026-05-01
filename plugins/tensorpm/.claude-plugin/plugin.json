@@ -1,12 +1,12 @@
 {
-  "name": "tensorpm-agentic-pm",
-  "description": "Agentic project management powered by TensorPM. Manage projects, action items, and workspaces through MCP tools and A2A protocol.",
+  "name": "tensorpm",
+  "description": "Agentic Project Memory and AI project management. Structured long-term memory for Claude Code, Codex, and any MCP/A2A agent — manage TensorPM projects, action items, and workspaces.",
   "version": "0.8.1-beta.6",
   "author": {
-    "name": "TensorPM",
+    "name": "TensorPM Team",
     "url": "https://tensorpm.com"
   },
-  "homepage": "https://tensorpm.com/skill",
+  "homepage": "https://tensorpm.com/SKILL.md",
   "repository": "https://github.com/Neo552/TensorPM-Skill",
   "compatibility": {
     "minTensorPMVersion": "0.8.0",
